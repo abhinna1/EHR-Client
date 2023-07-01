@@ -1,23 +1,27 @@
 import { ethers } from "ethers";
 
-const connectToMetaMask = async (provider) => {
-  if (window.ethereum) {
-    try {
-      // Request access to the user's MetaMask accounts
-      await window.ethereum.request({ method: "eth_requestAccounts" });
-
-      // Create an ethers.js provider using MetaMask's provider
-
-      // Get the connected accounts
-      const accounts = await provider.listAccounts();
-      // console.log(accounts)
-      return accounts[0];
-
-    } catch (error) {
-      console.error("Failed to connect to MetaMask:", error);
+const connectToMetaMask = async () => {
+  try {
+    const { ethereum } = window;
+    if (!ethereum) {
+      alert("Please install MetaMask");
+      return;
     }
-  } else {
-    console.error("MetaMask extension not detected");
+    // Chain Validation
+    // const chainId = await ethereum.request({ method: "eth_chainId" });
+
+    // if (chainId !== "0x539") {
+    //   alert("Please connect to the EHR Network");
+    // }
+
+    const accounts = await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+    return accounts[0];
+
+  } catch (err) {
+    console.log(err);
+    return ;
   }
 };
 

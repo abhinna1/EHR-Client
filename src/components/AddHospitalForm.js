@@ -8,69 +8,85 @@ const AddHospitalForm = () => {
   const [hospitalAddress, setHospitalAddress] = useState("");
   const [hospitalName, setHospitalName] = useState("");
   const [location, setLocation] = useState("");
-  const [web3, setWeb3] = useState(null);
-  const {wallet, setWallet}  = useContext(EHRContext);
+  const { wallet, setWallet, EHRContract } = useContext(EHRContext);
 
+  useEffect(() => {
+    if(!EHRContract) return;
+    EHRContract.get_hospital_count()
+    .then(count=>{
+      console.log(count.toNumber())
+    })
+  }, [EHRContract]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      const result = await HospitalServices.addHospital(
-        hospitalAddress,
-        hospitalName,
-        location,
-      )
-      console.log(result);
-      // Handle success or update UI accordingly
-    } catch (error) {
-      console.error("Error:", error);
-      alert(error.message || error);
-      // Handle error or show error message to the user
+      const hospital = await HospitalServices.addHospital({
+        EHRContract: EHRContract,
+        hospitalAddress: hospitalAddress,
+        hospitalName: hospitalName,
+        location: location,
+      })
+      console.log("hospital added.");
+      console.log(hospital);
+    } catch (err) {
+      console.log(err);
     }
   };
 
   useEffect(() => {
-    HospitalServices.getHospitals().then((res) => {
-      console.log(res);
-    }
-    );
-
+    // HospitalServices.getHospitals().then((res) => {
+    //   console.log(res);
+    // });
   }, []);
-;
-
   return (
     <form onSubmit={handleFormSubmit}>
       {/* <h1>{String(web3)}</h1> */}
       <h1>{wallet}</h1>
-      <label>
-        Hospital Address:
-        <input
-          type="text"
-          value={hospitalAddress}
-          onChange={(e) => setHospitalAddress(e.target.value)}
-        />
-      </label>
+      <div className="">
+        <label>
+          Hospital Address:
+          <input
+            className="border border-black"
+            type="text"
+            value={hospitalAddress}
+            onChange={(e) => setHospitalAddress(e.target.value)}
+          />
+        </label>
+      </div>
+
       <br />
-      <label>
-        Hospital Name:
-        <input
-          type="text"
-          value={hospitalName}
-          onChange={(e) => setHospitalName(e.target.value)}
-        />
-      </label>
+
+      <div className="">
+        <label>
+          Hospital Name:
+          <input
+            className="border border-black"
+            type="text"
+            value={hospitalName}
+            onChange={(e) => setHospitalName(e.target.value)}
+          />
+        </label>
+      </div>
       <br />
-      <label>
-        Location:
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-      </label>
+      <div className="">
+        <label>
+          Location:
+          <input
+            className="border border-black"
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
+        </label>
+      </div>
       <br />
-      <button type="submit">Add Hospital</button>
+      <button
+        type="submit"
+        className="border p-3 rounded-md bg-blue-800 text-white w-full"
+      >
+        Add Hospital
+      </button>
     </form>
   );
 };
