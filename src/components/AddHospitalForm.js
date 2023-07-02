@@ -6,6 +6,7 @@ import EHRContext from "../context/EHRContext";
 import Hospital from "../pages/Hospital";
 import helpers from "../helpers";
 import ClientRoutes from "../Routes/ClientRoutes";
+import SpecializationFields from "../commons/ENUMS/SpecializationENUM";
 
 const AddHospitalForm = () => {
   const [hospitalAddress, setHospitalAddress] = useState("");
@@ -42,7 +43,7 @@ const AddHospitalForm = () => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit} className="mt-20 px-24">
+    <form onSubmit={handleFormSubmit} className="my-8 px-24">
       <h1 className="text-center text-2xl font-bold">Add New Hospital</h1>
       {/* <h1>{String(web3)}</h1> */}
       <div className="flex flex-col">

@@ -19,16 +19,15 @@ const HospitalDetail = () => {
     });
   }, [EHRContract]);
 
-//   useEffect(() => {
-//     if (!EHRContract) return;
-//     HospitalServices.getHospitalByAddress({
-//       EHRContract: EHRContract,
-//       hospital_address: hospital_id,
-//     }).then((hospital) => {
-//       console.log(hospital.name);
-//       setHospital(hospital);
-//     });
-//   }, [EHRContract]);
+  useEffect(() => {
+    if (!EHRContract) return;
+    HospitalServices.getDoctorsByHospital({
+      EHRContract: EHRContract,
+      hospital_address: hospital_id,
+    }).then((doctors) => {
+      console.log(doctors);
+    });
+  }, [EHRContract]);
 
 
   return (
