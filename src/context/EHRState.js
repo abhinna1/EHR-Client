@@ -14,13 +14,19 @@ export default (props) => {
 
   useEffect(() => {
     console.log("setting TaskContract");
-    setEHRContract(
-      new ethers.Contract(
-        "",
-        EHRAbi.abi,
-        signer
-      )
-    );
+    try{
+      setEHRContract(
+        new ethers.Contract(
+          process.env.REACT_APP_CONTRACT_ADDRESS,
+          EHRAbi.abi,
+          signer
+        )
+      );
+    }
+    catch(e){
+      console.log(e);
+    }
+    
   }, []);
 
   useEffect(() => {

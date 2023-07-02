@@ -5,16 +5,30 @@ import HospitalServices from "../services/HospitalServices";
 import EHRContext from "../context/EHRContext";
 
 const AddDoctorForm = () => {
-  const [hospitalAddress, setHospitalAddress] = useState("");
   const [doctorAddress, setDoctorAddress] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [age, setAge] = useState(0);
   const [gender, setGender] = useState("");
   const [specialization, setSpecialization] = useState("");
+  const {EHRContract} = useContext(EHRContext);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    HospitalServices.addDoctor({
+      EHRContract: EHRContract,
+      doctorAddress: doctorAddress,
+      firstname: firstname,
+      lastname: lastname,
+      age: age,
+      gender: gender,
+      specialization: specialization,
+    }).then(doctor=>{
+      console.log(doctor);
+    }).catch(err=>{
+      console.log(err);
+    })
 
     // try {
     //   const result = await HospitalServices.addDoctor(
@@ -127,17 +141,7 @@ const AddDoctorForm = () => {
 
       <br />
 
-      <div className="">
-        <label>
-          Hospital Address:
-          <input
-            className="border border-black"
-            type="text"
-            value={hospitalAddress}
-            onChange={(e) => setHospitalAddress(e.target.value)}
-          />
-        </label>
-      </div>
+      
 
       <br />
       <button
