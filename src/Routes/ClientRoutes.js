@@ -15,6 +15,8 @@ class PatientRoutes extends Routes {
     static patient_form_route = this.patient_route + '/form';
     static patient_detail_route = (patient_id) => `${this.base_route}/${patient_id}`;
     static patient_requests_route = this.patient_route + '/access';
+    static accessed_list_route = this.patient_route + '/access/list'
+    static ehr_list_route = this.patient_route + '/ehr/list'
 }
 
 class DoctorRoutes extends Routes {

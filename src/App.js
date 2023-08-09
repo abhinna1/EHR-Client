@@ -14,6 +14,8 @@ import PatientForm from "./pages/PatientForm";
 import DoctorAccessForm from "./pages/DoctorAccessForm";
 import PatientRequests from "./pages/PatientRequests";
 import DoctorAccessList from "./pages/DoctorAccessList";
+import PatientAccessList from "./pages/PatientAccessList";
+import PatientEHRList from "./pages/PatientEHRList";
 function App() {
 
   return (
@@ -30,6 +32,9 @@ function App() {
           <Route path={ClientRoutes.DoctorRoutes.request_access_route} element={<DoctorAccessForm/>} />
           <Route path={ClientRoutes.PatientRoutes.patient_requests_route} element={<PatientRequests/>} />
           <Route path={ClientRoutes.DoctorRoutes.accessed_list_route} element={<DoctorAccessList/>} />
+          <Route path={ClientRoutes.PatientRoutes.accessed_list_route} element={<PatientAccessList/>} />
+          <Route path={ClientRoutes.PatientRoutes.ehr_list_route} element={<PatientEHRList/>} />
+          
         </Routes>
       </EHRProvider>
     </Router>

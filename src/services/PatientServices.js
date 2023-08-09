@@ -22,6 +22,9 @@ const approveEHRRequest = async ({ EHRContract, doctorAddress }) => {
   return await EHRContract.approveEHRRequest(doctorAddress);
 }
 
+const revokeAccess = async ({ EHRContract, doctor_address }) => {
+  return await EHRContract.revokeDoctorAccess(doctor_address);
+}
 
 
 export default {
@@ -30,4 +33,5 @@ export default {
   getAccessRequests,
   approveEHRRequest,
   getDoctorAccessList,
+  revokeAccess
 }
