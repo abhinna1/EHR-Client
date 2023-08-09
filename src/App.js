@@ -9,6 +9,11 @@ import HospitalCard from "./components/HospitalCard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hospital from "./pages/Hospital";
 import HospitalDetail from "./pages/HospitalDetail";
+import ClientRoutes from "./Routes/ClientRoutes";
+import PatientForm from "./pages/PatientForm";
+import DoctorAccessForm from "./pages/DoctorAccessForm";
+import PatientRequests from "./pages/PatientRequests";
+import DoctorAccessList from "./pages/DoctorAccessList";
 function App() {
 
   return (
@@ -21,6 +26,10 @@ function App() {
           <Route path="/doctor/form" element={<AddDoctorForm />} />
           <Route path="/hospital" element={<Hospital />} />
           <Route path="/hospital/:hospital_id" element={<HospitalDetail />} />
+          <Route path={ClientRoutes.PatientRoutes.patient_form_route} element={<PatientForm/>} />
+          <Route path={ClientRoutes.DoctorRoutes.request_access_route} element={<DoctorAccessForm/>} />
+          <Route path={ClientRoutes.PatientRoutes.patient_requests_route} element={<PatientRequests/>} />
+          <Route path={ClientRoutes.DoctorRoutes.accessed_list_route} element={<DoctorAccessList/>} />
         </Routes>
       </EHRProvider>
     </Router>

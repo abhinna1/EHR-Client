@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const uploadFileToIPFS = async (file) => {
+  console.log('uploading image to ipfs.')
   const data = new FormData();
   data.append("file", file);
   const res = await axios.post(
@@ -15,6 +16,7 @@ const uploadFileToIPFS = async (file) => {
       },
     }
   );
+  console.log('uploaded image to ipfs.')
   return res.data.IpfsHash;
   // return 
 };
