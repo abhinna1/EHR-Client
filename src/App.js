@@ -16,6 +16,7 @@ import PatientRequests from "./pages/PatientRequests";
 import DoctorAccessList from "./pages/DoctorAccessList";
 import PatientAccessList from "./pages/PatientAccessList";
 import PatientEHRList from "./pages/PatientEHRList";
+import HomePage from "./pages/Homepage";
 function App() {
 
   return (
@@ -24,6 +25,7 @@ function App() {
       <Navbar />
 
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/hospital/form" element={<AddHospitalForm />} />
           <Route path="/doctor/form" element={<AddDoctorForm />} />
           <Route path="/hospital" element={<Hospital />} />

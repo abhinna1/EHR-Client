@@ -35,7 +35,7 @@ const PatientForm = () => {
   return (
     <form onSubmit={handleFormSubmit} className="my-8 px-24">
       {/* <h1>{String(web3)}</h1> */}
-      <h1 className="text-center text-2xl font-bold">Add Patient</h1>
+      <h1 className="text-center text-2xl font-bold">Register as a patient</h1>
 
       <div className="flex flex-col mb-3">
         <label>Full Name:</label>
@@ -63,7 +63,7 @@ const PatientForm = () => {
         type="submit"
         className="border p-3 rounded-md bg-blue-800 text-white w-full"
       >
-        Add Doctor
+        Register
       </button>
     </form>
   );

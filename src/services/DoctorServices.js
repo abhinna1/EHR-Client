@@ -23,6 +23,11 @@ const addDoctor = async ({
   );
 };
 
+const isDoctor = async ({ EHRContract }) => {
+  return await EHRContract.isDoctor();
+};
+
+
 const uploadHospitalImage = async ({ file }) => {
   const hash = await helpers.uploadFileToIPFS(file);
   return hash;
@@ -52,4 +57,5 @@ export default {
   getDoctorByAddress,
   uploadEHR,
   insertEHRRecord,
+  isDoctor,
 };

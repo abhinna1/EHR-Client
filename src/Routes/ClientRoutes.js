@@ -7,6 +7,7 @@ class Routes{
 
 class HospitalRoutes extends Routes{
     static base_route = this.hospital_route;
+    static hospital_form_route = this.hospital_route + '/form';
     static hospital_detail_route = (hospital_id) => `${this.base_route}/${hospital_id}`;
 }
 
@@ -21,6 +22,7 @@ class PatientRoutes extends Routes {
 
 class DoctorRoutes extends Routes {
     static base_route = this.doctor_route;
+    static doctor_form_route = this.doctor_route + '/form';
     static request_access_route = this.doctor_route + '/access/form';
     static accessed_list_route = this.doctor_route + '/access/list'
 }

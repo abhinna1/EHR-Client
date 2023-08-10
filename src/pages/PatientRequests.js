@@ -28,7 +28,7 @@ const PatientRequests = () => {
   }, [EHRContract]);
   return (
     <div>
-      <h1>All Doctor Requests</h1>
+      <h1 className="text-center font-bold text-2xl my-8">All Doctor Requests</h1>
 
       <div className="w-full overflow-x-auto px-24 py-3">
         <table className="w-full divide-y divide-gray-200 text-center ">
@@ -127,9 +127,9 @@ const RequestRow = ({ request }) => {
       >
         Accept
       </td>
-      <td className="px-6 py-4 whitespace-nowrap cursor-pointer p-3 bg-red-400 rounded-xl">
+      {/* <td className="px-6 py-4 whitespace-nowrap cursor-pointer p-3 bg-red-400 rounded-xl">
         Reject
-      </td>
+      </td> */}
     </tr>
   );
 };
