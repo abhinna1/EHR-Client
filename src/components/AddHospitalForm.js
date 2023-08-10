@@ -34,9 +34,10 @@ const AddHospitalForm = () => {
         description: description,
         image: hash,
       });
-      console.log(hash);
+      // console.log(hash);
       alert(`Hospital Added Successfully. Hospital image hash: ${hash}`);
-      window.location.href = `${ClientRoutes.HospitalRoutes.hospital_detail_route(hospital.hospitalAddress)}`
+      console.log(hospital);
+      window.location.href = '/'
     } catch (err) {
       console.log(err);
     }

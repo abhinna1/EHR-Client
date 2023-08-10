@@ -30,9 +30,11 @@ const isPatient = async ({ EHRContract }) => {
   return await EHRContract.isPatient();
 }
 
+const isAdmin = async ({ EHRContract }) => {
+  return await EHRContract.isAdmin();
+}
 
-
-export default {
+const PatientServices = {
   registerPatient,
   getSelfData,
   getAccessRequests,
@@ -40,4 +42,7 @@ export default {
   getDoctorAccessList,
   revokeAccess,
   isPatient,
+  isAdmin,
 }
+
+export default PatientServices;

@@ -21,7 +21,7 @@ const PatientAccessList = () => {
   }, [EHRContract]);
   return (
     <div className="">
-      <h1 className="text-center">All Accessable Patients</h1>
+      <h1 className="text-center font-bold text-2xl my-8">Accessed Doctors</h1>
       <div className="w-full overflow-x-auto px-24 py-3">
         <table className="w-full divide-y divide-gray-200 text-center ">
           <thead className="text-center">

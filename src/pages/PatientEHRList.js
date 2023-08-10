@@ -17,7 +17,7 @@ const PatientEHRList = () => {
   }, [EHRContract]);
   return (
     <div className="">
-      <h1 className="text-center">All Accessable Patients</h1>
+      <h1 className="text-center font-bold text-2xl my-8">My EHRs</h1>
       <div className="w-full overflow-x-auto px-24 py-3">
         <table className="w-full divide-y divide-gray-200 text-center ">
           <thead className="text-center">
@@ -106,7 +106,7 @@ const EHRViewPopup = ({ record, onClose }) => {
         className="w-full h-full bg-black bg-opacity-50 absolute z-[60] left-0 top-0"
         onClick={onClose}
       ></div>
-      <div className="bg-white p-4 rounded-lg shadow-md z-[70] flex flex-col gap-y-4">
+      <div className="bg-white p-4 rounded-lg z-[70] flex flex-col gap-y-4">
         <div className="flex flex-col items-start">
           <p className="font-bold text-lg">Added By: </p>Dr.{" "}
           {record.doctor.firstName} {record.doctor.lastName}
@@ -115,7 +115,13 @@ const EHRViewPopup = ({ record, onClose }) => {
           <p className="font-bold text-lg">Added On: </p>
           {new Date(parseInt(record.date)).toLocaleDateString()}
         </div>
-        <img src={IPFSRoutes.mediaRoute(record.file)} className="" alt="" />
+        <div className="flex items-center justify-center">
+          <img
+            src={IPFSRoutes.mediaRoute(record.file)}
+            className="w-1/2 h-1/2"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

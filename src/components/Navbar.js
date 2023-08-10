@@ -12,13 +12,14 @@ const Navbar = () => {
   const { account, provider } = useContext(EHRContext);
   const [isPatient, setIsPatient] = useState(false);
   const [isDoctor, setIsDoctor] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isHospital, setIsHospital] = useState(false);
   const { EHRContract } = useContext(EHRContext);
   useEffect(() => {
     if (!EHRContract) return;
     PatientServices.isPatient({ EHRContract })
       .then((res) => {
         console.log(res);
-        // if (res ==="yes")
         setIsPatient(res);
       })
       .catch((err) => {
@@ -32,7 +33,6 @@ const Navbar = () => {
     DoctorServices.isDoctor({ EHRContract })
       .then((res) => {
         console.log(res);
-        // if (res ==="yes")
         setIsDoctor(res);
       })
       .catch((err) => {
@@ -46,11 +46,23 @@ const Navbar = () => {
     HospitalServices.isHospital({ EHRContract })
       .then((res) => {
         console.log(res);
-        // if (res ==="yes")
-        setIsDoctor(res);
+        setIsHospital(res);
       })
       .catch((err) => {
-        setIsDoctor(false);
+        setIsHospital(false);
+        console.log(err);
+      });
+  }, [EHRContract]);
+
+  useEffect(() => {
+    if (!EHRContract) return;
+    PatientServices.isAdmin({ EHRContract })
+      .then((res) => {
+        console.log(`isAdmin: ${res}`);
+        setIsAdmin(res);
+      })
+      .catch((err) => {
+        setIsAdmin(false);
         console.log(err);
       });
   }, [EHRContract]);
@@ -81,7 +93,7 @@ const Navbar = () => {
         )}
 
         {/* Hospital Dropdown */}
-        {isDoctor && (
+        {isHospital && (
           <DropdownButton title="Hospital">
             <DropdownButtonItem
               link={ClientRoutes.DoctorRoutes.doctor_form_route}
@@ -90,36 +102,50 @@ const Navbar = () => {
           </DropdownButton>
         )}
 
-        {/* Patient Dropdown */}
-        {isPatient ? (
-          <DropdownButton title="Patient">
+        {/* Admin Dropdown */}
+        {isAdmin && (
+          <DropdownButton title="Admin">
             <DropdownButtonItem
-              link={ClientRoutes.PatientRoutes.ehr_list_route}
-              body="My Records"
-            />
-            <DropdownButtonItem
-              link={ClientRoutes.PatientRoutes.patient_requests_route}
-              body="Doctor Requests"
-            />
-            <DropdownButtonItem
-              link={ClientRoutes.PatientRoutes.accessed_list_route}
-              body="Accessed doctors"
+              link={ClientRoutes.HospitalRoutes.hospital_form_route}
+              body="Add Hospital"
             />
           </DropdownButton>
-        ) : (
-          <Link to={ClientRoutes.PatientRoutes.patient_form_route}>
-            Register as a Patient
-          </Link>
         )}
 
+        {/* Patient Dropdown */}
+
         {account ? (
-          <h1>{account}</h1>
+          <>
+            {" "}
+            {isPatient ? (
+              <DropdownButton title="Patient">
+                <DropdownButtonItem
+                  link={ClientRoutes.PatientRoutes.ehr_list_route}
+                  body="My Records"
+                />
+                <DropdownButtonItem
+                  link={ClientRoutes.PatientRoutes.patient_requests_route}
+                  body="Doctor Requests"
+                />
+                <DropdownButtonItem
+                  link={ClientRoutes.PatientRoutes.accessed_list_route}
+                  body="Accessed doctors"
+                />
+              </DropdownButton>
+            ) : (
+              <Link to={ClientRoutes.PatientRoutes.patient_form_route}>
+                Register as a Patient
+              </Link>
+            )}
+            <h1>{account}</h1>
+          </>
         ) : (
           <h1
             onClick={() => {
               ContextHelpers.connectToMetaMask(provider)
                 .then((res) => {
                   console.log(res);
+                  window.location.reload();
                 })
                 .catch((err) => {
                   console.log(err);

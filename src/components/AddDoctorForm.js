@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Web3 } from "web3";
-
+// 11494793
 import HospitalServices from "../services/HospitalServices";
 import EHRContext from "../context/EHRContext";
 import SpecializationFields from "../commons/ENUMS/SpecializationENUM";
@@ -43,6 +43,7 @@ const AddDoctorForm = () => {
     })
       .then((doctor) => {
         console.log(doctor);
+        window.location.href = "/";
       })
       .catch((err) => {
         console.log(err);

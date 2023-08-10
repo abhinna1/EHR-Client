@@ -227,7 +227,7 @@ const EHRListPopup = ({ patient, onClose }) => {
         <table className="w-full divide-y divide-gray-200 text-center z-[75] ">
           <thead className="text-center">
             <tr>
-            <th className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider">
+              <th className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider">
                 Added By
               </th>
               <th className="px-6 py-3 text-center text-xs font-medium  uppercase tracking-wider">
@@ -271,7 +271,14 @@ const EHRRow = ({ record }) => {
   return (
     <tr>
       {/* <td className="px-6 py-4 whitespace-nowrap">{doctor.doctorAddress}</td> */}
-      {popup && <EHRViewPopup record={record} onClose={()=>{setPopup(false)}} />}
+      {popup && (
+        <EHRViewPopup
+          record={record}
+          onClose={() => {
+            setPopup(false);
+          }}
+        />
+      )}
       <td className="px-6 py-4 whitespace-nowrap">
         Dr. {record.doctor.firstName} {record.doctor.lastName}
       </td>
@@ -280,7 +287,13 @@ const EHRRow = ({ record }) => {
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-blue-600">
         {" "}
-        <Link onClick={()=>{setPopup(true);}}>View record</Link>
+        <Link
+          onClick={() => {
+            setPopup(true);
+          }}
+        >
+          View record
+        </Link>
       </td>
     </tr>
   );
@@ -302,7 +315,13 @@ const EHRViewPopup = ({ record, onClose }) => {
           <p className="font-bold text-lg">Added On: </p>
           {new Date(parseInt(record.date)).toLocaleDateString()}
         </div>
-        <img src={IPFSRoutes.mediaRoute(record.file)} className="" alt="" />
+        <div className="flex items-center justify-center">
+          <img
+            src={IPFSRoutes.mediaRoute(record.file)}
+            className="w-1/2 h-1/2"
+            alt=""
+          />
+        </div>
       </div>
     </div>
   );

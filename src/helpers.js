@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const uploadFileToIPFS = async (file) => {
+  console.log(process.env.REACT_APP_PINATA_JWT)
   console.log('uploading image to ipfs.')
   const data = new FormData();
   data.append("file", file);

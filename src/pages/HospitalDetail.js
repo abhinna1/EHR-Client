@@ -52,6 +52,7 @@ const HospitalDetail = () => {
           {doctors.map((doctor) => (
             <>
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
+              {/* <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
@@ -60,8 +61,7 @@ const HospitalDetail = () => {
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
               <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
-              <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
-              <DoctorCard key={doctor.doctorAddress} doctor={doctor} />
+              <DoctorCard key={doctor.doctorAddress} doctor={doctor} /> */}
             </>
           ))}
         </div>

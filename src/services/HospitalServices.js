@@ -48,11 +48,7 @@ const get_doctors_by_hospital = async ({ EHRContract, hospital_address }) => {
   return await EHRContract.get_doctors_by_hospital(hospital_address);
 }
 
-
-
-
-
-export default {
+const HospitalServices = {
   addHospital,
   getAllHospitals,
   uploadHospitalImage,
@@ -61,3 +57,4 @@ export default {
   isHospital,
   get_doctors_by_hospital,
 };
+export default HospitalServices;
